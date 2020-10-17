@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
-using SeleniumFramework.util;
-using System.Runtime;
 using SeleniumFramework.pages;
 using FluentAssertions;
+using System.Diagnostics;
+
 namespace SeleniumFramework.tests
 {
     [TestFixture]
@@ -23,6 +18,7 @@ namespace SeleniumFramework.tests
         {
 
         }
+       
         [OneTimeSetUp]
         public void initialize()
         {
@@ -30,32 +26,20 @@ namespace SeleniumFramework.tests
             gettingStarted = new GettingStarted(driver);
             home = new Home(driver);
         }
+
         [Test]
-        public void testHomePage()
+        public void TestVerifyUsedCarListing_RefreshPage_Successful()
         {
-            home.openHome("https://www.prestashop.com/en");
+            home.openUrl("https://www.carlist.my/");
             home.isHomePageLoaded().Should().BeTrue();
-            Console.WriteLine("App is launched successfully");
+            home.clickCheckBox("Used");
+            home.clickSearchButton();
+            home.isCarListingPageLoaded();
+            home.clickOnCarListingImage(1);
+            home.isCarDetailsPageLoaded();
+            home.getCarPrice(1).Should().BeGreaterThan(1000);            
         }
-        [Test]
-        public void testGoToFeaturePage()
-        {
-            home.openHome("https://www.prestashop.com/en");
-            home.clickProductMenu();
-            home.clickFeatureMenu();
-            Console.WriteLine("Clicked on Feature Menu");
-        }
-        [Test]
-        public void testFeaturePage()
-        {
-            home.openHome("https://www.prestashop.com/en");
-            home.clickProductMenu();
-            home.clickFeatureMenu();
-            gettingStarted.isFeaturePageLoaded().Should().BeTrue();
-            gettingStarted.clickLegalLink();
-            gettingStarted.clickBackToTop().Should().BeTrue();
-            Console.WriteLine("Feature Page testing completed");
-        }
+
         [OneTimeTearDown]
         public void cleanUp()
         {

@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using OpenQA.Selenium.Support.Extensions;
-using System.Diagnostics;
 
 namespace SeleniumFramework.util
 {
@@ -17,6 +11,7 @@ namespace SeleniumFramework.util
         {
             driver = d;
         }
+
         public void captureScreenshot()
         {
             Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
@@ -25,6 +20,7 @@ namespace SeleniumFramework.util
             ss.SaveAsFile("E:\\code\\CSharpe\\" + "Step" + GetTimestamp(DateTime.Now) + ".jpeg", OpenQA.Selenium.ScreenshotImageFormat.Jpeg);
             //Console.WriteLine("Screenshot captured in file " + "E:\\code\\CSharpe\\" + "Step" + GetTimestamp(DateTime.Now) + ".jpeg");
         }
+
         public static String GetTimestamp(DateTime value)
         {
             return value.ToString("yyyyMMddHHmmssffff");
@@ -36,6 +32,7 @@ namespace SeleniumFramework.util
             IWebElement element = wait.Until(ExpectedConditions.ElementIsVisible(locator));
             return element;
         }
+
         public bool ClickElement(By locator)
         {
             bool returnValue = false;
@@ -56,6 +53,25 @@ namespace SeleniumFramework.util
             }
             return returnValue;
         }
+
+        public string GetTextFromElement(By locator)
+        {
+            string returnValue = "";
+            try
+            {
+                returnValue = WaitForElementVisible(locator).Text;
+            }
+            catch (NoSuchElementException e)
+            {
+                Console.WriteLine("Element " + locator + "not found on page " + driver.Title);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Unknown error " + e.Message + " occurred on page " + driver.Title);
+            }
+            return returnValue;
+        }
+
         public bool IsElementVisible(By locator)
         {
             bool returnValue = false;
