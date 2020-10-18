@@ -1,35 +1,22 @@
 ﻿using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 
-namespace SeleniumFramework.util
+namespace Sitecore_UITest.ControlObjects
 {
-    class Util
+    public class Actions
     {
         private IWebDriver driver = null;
-        public Util(IWebDriver d)
+        public Actions(IWebDriver d)
         {
             driver = d;
         }
 
-        public void captureScreenshot()
-        {
-            Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
-            string screenshot = ss.AsBase64EncodedString;
-            byte[] screenshotAsByteArray = ss.AsByteArray;
-            ss.SaveAsFile("E:\\code\\CSharpe\\" + "Step" + GetTimestamp(DateTime.Now) + ".jpeg", OpenQA.Selenium.ScreenshotImageFormat.Jpeg);
-            //Console.WriteLine("Screenshot captured in file " + "E:\\code\\CSharpe\\" + "Step" + GetTimestamp(DateTime.Now) + ".jpeg");
-        }
-
-        public static String GetTimestamp(DateTime value)
-        {
-            return value.ToString("yyyyMMddHHmmssffff");
-        }
-
         public IWebElement WaitForElementVisible(By locator)
         {
-            WebDriverWait wait = new WebDriverWait(driver, System.TimeSpan.FromSeconds(10));
-            IWebElement element = wait.Until(ExpectedConditions.ElementIsVisible(locator));
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            IWebElement element = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locator));
             return element;
         }
 
@@ -43,7 +30,7 @@ namespace SeleniumFramework.util
             }
             catch (NoSuchElementException e)
             {
-                Console.WriteLine("Element " + locator + "not found on page " + driver.Title);
+                Console.WriteLine("Element " + e.Message + locator + "not found on page " + driver.Title);
                 returnValue = false;
             }
             catch (Exception e)
