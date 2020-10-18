@@ -4,3 +4,4 @@ _ReSharper.*
 bin
 obj
 packages
+*.vs/SitecoreAutomation/v16/TestStore/0/000.testlog
