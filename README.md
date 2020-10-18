@@ -7,7 +7,7 @@
   
 <h1>System Requirement</h1>
 <p> 1. Microsoft Visual Studio V 15 and above, dotnet and nuget
-<p> 2. Tested with ChromeDriver 86.0.4240.22, by default Chromedriver already included inside Packages folder when execute Restore Nuget Packages. Build project will copy from Packages folder to Bin folder. However you may use any version of Chromedriver by replace in Bin folder or define in $PATH
+<p> 2. Tested with ChromeDriver 86.0.4240.22. By default Chromedriver already included inside Package folder when execute Restore Nuget at Solution. By triggering Build/Rebuild on project, it will copy from Packages folder to Bin folder. However you may use any version of Chromedriver by replace in Bin folder or define in $PATH
 
 
 
