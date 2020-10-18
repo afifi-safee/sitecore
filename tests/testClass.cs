@@ -30,14 +30,15 @@ namespace SeleniumFramework.tests
         [Test]
         public void TestVerifyUsedCarListing_RefreshPage_Successful()
         {
+            var listNumber = 1;
             home.openUrl("https://www.carlist.my/");
             home.isHomePageLoaded().Should().BeTrue();
             home.clickCheckBox("Used");
             home.clickSearchButton();
             home.isCarListingPageLoaded();
-            home.clickOnCarListingImage(1);
+            home.clickOnCarListingImage(listNumber);
             home.isCarDetailsPageLoaded();
-            home.getCarPrice(1).Should().BeGreaterThan(1000);            
+            home.getCarPrice(listNumber).Should().BeGreaterThan(1000);            
         }
 
         [OneTimeTearDown]

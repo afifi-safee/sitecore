@@ -1,2 +1,0 @@
-C:\Users\afifi\Desktop\SeleniumFrameworkCSharp\obj\Debug\Sitecore-UITest.csproj.CoreCompileInputs.cache
-C:\Users\afifi\Desktop\SeleniumFrameworkCSharp\obj\Debug\Sitecore-UITest.csprojAssemblyReference.cache
