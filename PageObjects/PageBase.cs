@@ -28,8 +28,8 @@ namespace Sitecore_UITest.PageObjects
 
         public void OpenUrl(string url)
         {
+            driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl(url);
-            driver.Manage().Window.FullScreen();
         }
     }
 }

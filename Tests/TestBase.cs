@@ -27,7 +27,6 @@ namespace Sitecore_UITest.Tests
             pageBase = new PageBase(driver);
             mainPage = new MainPage(driver);
             carListingPage = new ViewCarListingPage(driver);
-            
             pageBase.OpenUrl("https://www.carlist.my/");
             mainPage.IsHomePageLoaded().Should().BeTrue();
         }
