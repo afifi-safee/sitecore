@@ -1,3 +1,10 @@
-<h1>Selenium Framework in C#</h1>
-<p> This framework is created in Selenium and C#. It uses Page Object model design pattern.
-</p>
+<h1>Sitecore Assignment : How to use this repository</h1>
+
+<p> 1. Git Clone this repo
+<p> 2. Right click Solution and restore Nuget Packages
+<p> 3. Right click Project Build / Rebuild project
+<p> 4. Run test from inside Tests folder
+
+
+
+
